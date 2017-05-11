@@ -22,8 +22,7 @@ public class PageVisitCountBolt extends BaseRichBolt {
 	@Override
 	public void execute(Tuple input) {
 		String url = input.getStringByField("url");
-		pageVisitCounts.putIfAbsent(url, 0);
-		pageVisitCounts.put(url, pageVisitCounts.get(url) + 1);
+		pageVisitCounts.put(url, pageVisitCounts.getOrDefault(url, 0) + 1);
 		outputCollector.ack(input);
 	}
 

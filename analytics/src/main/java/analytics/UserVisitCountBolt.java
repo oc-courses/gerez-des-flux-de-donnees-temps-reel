@@ -23,12 +23,10 @@ public class UserVisitCountBolt extends BaseRichBolt {
 	@Override
 	public void execute(Tuple input) {
 		Integer userId = input.getIntegerByField("userId");
-		userVisitCounts.putIfAbsent(userId, 0);
-		userVisitCounts.put(userId, userVisitCounts.get(userId) + 1);
+		userVisitCounts.put(userId, userVisitCounts.getOrDefault(userId, 0) + 1);
 		
 		if(ThreadLocalRandom.current().nextInt(10) == 0)
 		{
-			System.out.printf("---- Failed processing %s\n", input);
 			outputCollector.fail(input);
 		}
 		else

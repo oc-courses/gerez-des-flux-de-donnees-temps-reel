@@ -26,10 +26,6 @@ public class App
     	
     	Config config = new Config();
     	String topologyName = "analytics-topology";
-    	if(args.length > 1)
-    	{
-    		topologyName = args[1];
-    	}
     	if(args.length > 0 && args[0].equals("remote"))
     	{
     		StormSubmitter.submitTopology(topologyName, config, topology);

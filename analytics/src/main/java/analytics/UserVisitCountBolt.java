@@ -25,12 +25,10 @@ public class UserVisitCountBolt extends BaseRichBolt {
 		Integer userId = input.getIntegerByField("userId");
 		userVisitCounts.put(userId, userVisitCounts.getOrDefault(userId, 0) + 1);
 		
-		if(ThreadLocalRandom.current().nextInt(10) == 0)
-		{
+		if(ThreadLocalRandom.current().nextInt(10) == 0) {
 			outputCollector.fail(input);
 		}
-		else
-		{
+		else {
 			outputCollector.ack(input);
 		}
 	}

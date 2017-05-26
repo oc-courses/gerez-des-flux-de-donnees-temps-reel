@@ -38,14 +38,14 @@ public class PageVisitSpout extends BaseRichSpout {
 	}
 	
 	@Override
-    public void ack(Object msgId) {
+	public void ack(Object msgId) {
 		System.out.printf("Correctly processed: %s\n", msgId);
-    }
+	}
 	
 	@Override
-    public void fail(Object msgId) {
+	public void fail(Object msgId) {
 		System.out.printf("ERROR processing: %s\n", msgId);
 		Values tuple = (Values)msgId;
 		outputCollector.emit(tuple, msgId);
-    }
+	}
 }
